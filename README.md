@@ -108,3 +108,44 @@ On the folder `/app/views/layouts/` create a new file called `_header.html` and 
 </nav>
 
 ```
+
+### Generate Post scaffold
+To generate the Post scaffold use:
+```
+$ rails g scaffold Post text:text
+```
+After starting the server (with `$ rails s`) check your new Post scaffold by opening on your browser the link [localhost:3000/posts](http://localhost:3000/posts).
+
+Delete the `scaffolds.scss` file at `/app/assets/stylesheets/` to get rid of the conflicting css style an reload your page on the browser to see the changes.
+
+Replace the content of the `index` file with the following code:
+
+```erb
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+<br>
+  <div class="list-group">
+    <% @posts.each do |post| %>
+      <%= link_to post, class:"list-group-item list-group-item-action" do %>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">    <%  %>   </h5>
+            <small><%= time_ago_in_words(post.created_at) %></small>
+          </div>
+        <p class="mb-1"><%= post.text %></p>
+        <small>Author</small>
+        
+      <% end %>
+    <% end %>
+  </div>
+<br/>  
+<%= link_to 'New Post', new_post_path, class:"btn btn-secondary"%>
+
+```
+Add a link to the Posts page to the Navbar by the following code to `_header.html.erb`:
+
+```erb
+  <li class="nav-item">
+    <%= link_to "Posts", posts_path, class:"nav-link" %>
+  </li>
+```

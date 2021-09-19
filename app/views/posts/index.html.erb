@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+<br>
+  <div class="list-group">
+    <% @posts.each do |post| %>
+      <%= link_to post, class:"list-group-item list-group-item-action" do %>
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">    <%  %>   </h5>
+            <small><%= time_ago_in_words(post.created_at) %></small>
+          </div>
+        <p class="mb-1"><%= post.text %></p>
+        <small>Author</small>
+        
+      <% end %>
+    <% end %>
+  </div>
+<br/>  
+
+
+
+<%= link_to 'New Post', new_post_path, class:"btn btn-secondary"%>
