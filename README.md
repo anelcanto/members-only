@@ -198,3 +198,7 @@ Add guard definition to your Guardfile by running this command:
 ```
 $ guard init livereload
 ```
+### Generate Devise Views
+```
+rails generate devise:views
+```
