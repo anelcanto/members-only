@@ -10,7 +10,12 @@
             <small><%= time_ago_in_words(post.created_at) %></small>
           </div>
         <p class="mb-1"><%= post.text %></p>
-        <small>Author</small>
+        
+        <% if user_signed_in? && current_user.id == post.user_id%>
+          <small> You created this post</small>
+        <%else%>
+          <small> Hidden author</small>
+        <%end%>
         
       <% end %>
     <% end %>
