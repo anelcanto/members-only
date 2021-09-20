@@ -149,3 +149,16 @@ Add a link to the Posts page to the Navbar by the following code to `_header.htm
     <%= link_to "Posts", posts_path, class:"nav-link" %>
   </li>
 ```
+### Install simpleform
+
+Add it to your Gemfile:
+
+gem 'simple_form'
+Run the following command to install it:
+
+bundle install
+Run the generator:
+
+rails generate simple_form:install
+
+(for more information check [simple_form documentation](https://github.com/heartcombo/simple_form))
