@@ -202,3 +202,59 @@ $ guard init livereload
 ```
 rails generate devise:views
 ```
+### Add new columns to user  model
+Create a new file in /app/controllers called `registrations_controller.rb`.
+
+Add the following code to that file:
+```erb
+class RegistrationsController < Devise:RegistrationsController
+    
+    private
+    
+    def sing_up_params
+        params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+    end
+
+    def account_update_params
+        params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :current_password)
+    end
+end
+```
+Add a new migration:
+```
+$ rails g migration AddFieldsToUsers
+```
+
+Replace the content of that file with the following code (the name of that file should end in ...add_fields_to_users.rb):
+```erb
+class AddFieldsToUsers < ActiveRecord::Migration[6.1]
+  def change
+    add_column :users, :name, :string
+    add_column :users, :username, :string
+    add_index :users, :username, unique: true
+  end
+end
+```
+Run the migration:
+```
+$ rails db:migrate
+```
+
+Add the name and username fields to `new.html.erb`:
+```
+    <%= f.input :name,
+                required: true,
+                input_html: { autocomplete: "name" }%>
+    <%= f.input :username,
+                required: true,
+                input_html: { autocomplete: "username" }%>     
+```
+
+Delete the `autofocus: true,` line from the email field.
+
+#### Add user_id column to Post
+Create a new migration to add the user_id to posts
+```
+$ rails g migration AddUserIdToPost user_id:integer
+```
+Run the migration (`$ rails db:migrate`)
