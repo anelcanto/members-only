@@ -162,3 +162,39 @@ Run the generator:
 rails generate simple_form:install
 
 (for more information check [simple_form documentation](https://github.com/heartcombo/simple_form))
+
+### Add guard and guard-livereload
+Add Guard (and any other dependencies) to a Gemfile in your project’s root:
+```
+group :development do
+  gem 'guard'
+end
+```
+then install it by running Bundler:
+```
+$ bundle
+```
+Generate an empty Guardfile with:
+```
+$ bundle exec guard init
+```
+Run Guard through Bundler with:
+```
+$ bundle exec guard
+```
+(for more information check [guard documentation](https://guardgem.org).)
+
+Install the live_guard:
+```
+$ gem install guard-livereload
+```
+Add it to your Gemfile (inside development group):
+```
+group :development do
+  gem 'guard-livereload', '~> 2.5', require: false
+end
+```
+Add guard definition to your Guardfile by running this command:
+```
+$ guard init livereload
+```
