@@ -333,3 +333,23 @@ class PostsController < ApplicationController
     end
 end
 ```
+
+### Swtich from using sqlite to a postre database
+
+In your `Gemfile` **cut** the line that says *'gem sqlite3...'* and paste it within the development group (in the `Gemfile`:)
+```rb
+group :development do
+  ...
+  {paste [gem 'sqlite3', '~> 1.4'] here (without parethesis.)}
+end
+```
+Then paste the current version of [postres](https://rubygems.org/gems/pg) -as of now `gem 'pg', '~> 1.2', '>= 1.2.3'` to the production group. Add the following code to your gemfile:
+```rb
+group :production do
+  gem 'pg', '~> 1.2', '>= 1.2.3'  
+end
+```
+Then in terminal use:
+```
+$ bundle install
+```
