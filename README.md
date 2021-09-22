@@ -1,6 +1,6 @@
 # README
 
-The purpose of [this app](https://github.com/anelcanto/members-only#readme) is to learn about: 
+The purpose of [this app](http://members-only-post-odin.herokuapp.com/) is to learn about: 
 1. Authentication using the 'Devise' gem 
 2. Authorization
 
