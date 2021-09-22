@@ -333,8 +333,9 @@ class PostsController < ApplicationController
     end
 end
 ```
+## (Optional) Publish your web app
 
-### Swtich from using sqlite to a postre database
+### Swtich from using sqlite to a PostgreSQL database
 
 In your `Gemfile` **cut** the line that says *'gem sqlite3...'* and paste it within the development group (in the `Gemfile`:)
 ```rb
@@ -343,7 +344,7 @@ group :development do
   {paste [gem 'sqlite3', '~> 1.4'] here (without parethesis.)}
 end
 ```
-Then paste the current version of [postres](https://rubygems.org/gems/pg) -as of now `gem 'pg', '~> 1.2', '>= 1.2.3'` to the production group. Add the following code to your gemfile:
+Then paste the current version of [posgtres](https://rubygems.org/gems/pg) -as of now `gem 'pg', '~> 1.2', '>= 1.2.3'` to the production group. Add the following code to your gemfile:
 ```rb
 group :production do
   gem 'pg', '~> 1.2', '>= 1.2.3'  
@@ -352,4 +353,27 @@ end
 Then in terminal use:
 ```
 $ bundle install
+```
+
+### Launch your app to heroku
+---
+**Note**: You need to log in with [heroku](heroku.com) aset in for your enviroment. Luckily it is easy and free to use. Check out [this tutorial](https://devcenter.heroku.com/articles/getting-started-with-rails6) about how to set heroku with rails.
+
+------
+
+After [loging in](https://devcenter.heroku.com/articles/heroku-cli#getting-started) from your terminal, create a new heroku app. The name of the app must be unique in heroku.
+```
+$ heroku create [new-app-name]
+```
+You can check if if heroku is one of your remote repositories by checking:
+```
+git remote -v
+```
+After committing your project to github. Push your app to heroku.
+```
+git push heroku main
+```
+Migrate your database in heroku
+```
+heroku run rails db:migrate
 ```
